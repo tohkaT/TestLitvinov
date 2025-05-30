@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ title }}{% endblock %}
+{% block body %}
+    <div class="container">
+        <h1>Погода</h1>
+        {% if weather_data.success %}
+            <p>Текущая погода в {{ weather_data.city }}, {{ weather_data.country }}:</p>
+            <p>Температура: {{ weather_data.temperature }}°C</p>
+            <p>Состояние: {{ weather_data.condition }}</p>
+            <p>Влажность: {{ weather_data.humidity }}%</p>
+            <p>Скорость ветра: {{ weather_data.wind_speed }} км/ч</p>
+            <p>Последнее обновление: {{ weather_data.last_updated|date("d.m.y H:i") }}</p>
+        {% else %}
+            <p>Ошибка: {{ weather_data.error }}</p>
+        {% endif %}
+    </div>
+{% endblock %}
